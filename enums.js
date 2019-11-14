@@ -1,5 +1,28 @@
 var exports = {};
 
+exports.weaponType = {
+    array: [
+        "Axe",
+        "Bow",
+        "Crossbow",
+        "Dagger",
+        "Fishing Pole",
+        "Fist Weapon",
+        "Gun",
+        "Held in Off-hand",
+        "Idol",
+        "Libram",
+        "Mace",
+        "Polearm",
+        "Shield",
+        "Staff",
+        "Sword",
+        "Thrown",
+        "Totem",
+        "Wand"
+    ]
+};
+
 exports.itemSlots = {
     array: [
         "Ammo",

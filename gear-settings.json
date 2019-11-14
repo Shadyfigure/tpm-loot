@@ -50,10 +50,10 @@
     }
   },
   "defaultMultiplier": {
-    "default": 1,
+    "NONE": 1,
     "Two-Hand": 2,
     "One-Hand": 1.5,
-    "Main-Hand": 1.5,
+    "Main Hand": 1.5,
     "Head": 1,
     "Chest": 1,
     "Legs": 1,
@@ -66,8 +66,12 @@
     "Neck": 0.5,
     "Back": 0.5,
     "Finger": 0.5,
-    "Off-Hand": 0.5,
+    "Off Hand": 0.5,
     "Ranged": 0.5,
     "Relic": 0.5
+  },
+  "racialPriority": {
+    "Orc": "Axe",
+    "Human": "Sword"
   }
 }

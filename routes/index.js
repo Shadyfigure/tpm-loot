@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
 let express = require('express');
+let fs = require('fs');
 let router = express.Router();
 
 let enums = require('../enums');
@@ -11,6 +12,17 @@ router.get('/enums', function (req, res, next) {
 
 router.get('/role', function (req, res, next) {
   res.send(enums.userRoles.byName.ADMIN);
+});
+
+router.get('/settings', function (req, res, next) {
+  fs.readFile(__dirname+"/../gear-settings.json", "utf8", function (err, data) {
+    if(err){
+      res.status(500).send(err);
+    }
+    else{
+      res.status(200).send(JSON.parse(data));
+    }
+  });
 });
 
 /* GET home page. */

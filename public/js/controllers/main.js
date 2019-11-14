@@ -18,6 +18,12 @@ function ($scope, $http) {
         })
     });
 
+    $http.get('settings')
+    .then(function (res) {
+        $scope.settings = res.data;
+        console.log($scope.settings);
+    });
+
     $scope.selectRaid = function(raid){
         $scope.selectedRaid = raid;
         $http.post(
@@ -33,5 +39,23 @@ function ($scope, $http) {
     $scope.selectBoss = function (boss) {
         $scope.selectedBoss = boss;
     };
+
+    $scope.refreshItem = function (item, i) {
+        $http.post(
+            'lootlist/wowhead-request',
+            {itemId:item.itemId}
+        )
+        .then(function (res) {
+            console.log(res.data);
+            $scope.selectedBoss.loot[i] = res.data;
+        })
+        .catch(function (err) {
+            console.error(err);
+        });
+    }
+
+    $scope.calculateGP = function (base, multiplier) {
+        return Math.round(base * multiplier);
+    }
 }]);
 })();

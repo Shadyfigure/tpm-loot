@@ -9,7 +9,9 @@ a {
   color: #0040FF;
 }
 
-
+.itemIcon {
+  max-height: 30px;
+}
 
 .thumbnail {
   max-height: 50px;

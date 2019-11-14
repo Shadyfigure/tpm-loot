@@ -114,8 +114,8 @@ let itemSchema = new Schema({
     iLvl:       {type: Number},
     name:       {type: String, required:true},
     quality:    {type: Number},
-    slot:       {type: String}
-
+    slot:       {type: String},
+    weapon:     {type: String}
 });
 
 exports.itemModel = mongoose.model("Item", itemSchema);

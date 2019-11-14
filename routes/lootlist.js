@@ -175,16 +175,34 @@ router.post('/wowhead-request', function (req, res, next) {
             itemObj.gpBase = helpers.gpCalc(iLvl,quality);
 
             for(let i = 0; i < enums.itemSlots.array.length; i++){
-                itemObj.slot = "NONE";
-                if(itemData.search(enums.itemSlots.array[i]) > -1){
+                if(itemData.indexOf("<td>"+enums.itemSlots.array[i]) > -1){
                     itemObj.slot = enums.itemSlots.array[i];
-                    continue;
+                    break;
+                }
+                else{
+                    itemObj.slot = "NONE";
+                }
+            }
+
+            for(let i = 0; i < enums.weaponType.array.length; i++){
+                if(itemData.indexOf(enums.weaponType.array[i]) > -1){
+                    itemObj.weapon = enums.weaponType.array[i];
+                    break;
+                }
+                else{
+                    itemObj.weapon = "NO";
                 }
             }
 
             console.log("WoWHead query on item: ", req.body.itemId);
-            Item.findOneAndUpdate({itemId:req.body.itemId},itemObj).exec();
-            res.status(200).send(itemObj);
+            console.log(itemObj);
+            return itemObj;
+        })
+        .then(function () {
+            return Item.findOneAndUpdate({itemId:req.body.itemId},itemObj,{new:true}).exec();
+        })
+        .then(function (item) {
+            res.status(200).send(item);
         })
         .catch(function (err) {
             console.error(err);
