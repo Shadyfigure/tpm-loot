@@ -1,0 +1,42 @@
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li ng-class="raid === selectedRaid ? 'active' : ''" ng-repeat="raid in raids">
+                <a href="#" ng-click="selectRaid(raid)">
+                    {{enums.instances.fromDB[raid.name]}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav ng-if="selectedRaid" class="navbar navbar-inverse">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li ng-repeat="boss in bosses" ng-class="boss === selectedBoss ? 'active' : ''">
+                <a href="#" ng-click="selectBoss(boss)">
+                    {{boss.name}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="row">
+    <h2 ng-if="!selectedRaid">Select a raid above...</h2>
+    <h2 ng-if="selectedRaid && !selectedBoss">Select a boss above</h2>
+    <h2>{{enums.instances.fromDB[selectedRaid.name]}}</h2>
+    <hr>
+</div>
+
+<div class="row">
+    <div class="col-sx-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="row" ng-repeat="item in selectedBoss.loot"ng-repeat="item in SelectedBoss.loot">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <a class="" href="https://classic.wowhead.com/item={{item.itemId}}" target="_blank">
+                    <img ng-src="{{item.iconUrl}}"><b ng-class="'q'+item.quality">{{item.name}}</b> GP: {{item.gpBase}}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="tpmGuildloot">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <base href="/" />
+
+
+    <title><%= title %></title>
+
+    <script>var whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true, iconSize: 'large'};</script>
+    <script src="https://wow.zamimg.com/widgets/power.js"></script>
+
+    <link rel="stylesheet" href="lib/css/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="lib/css/bootstrap/css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="lib/css/fontawesome/css/all.min.css" />
+
+    <script type="text/javascript" src="lib/js/angular/angular.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular/angular-animate.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular/angular-touch.min.js"></script>
+
+    <script type="text/javascript" src="lib/css/bootstrap/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/controllers/main.js"></script>
+    <script type="text/javascript" src="js/controllers/bosses.js"></script>
+    <script type="text/javascript" src="js/controllers/instances.js"></script>
+    <script type="text/javascript" src="js/controllers/items.js"></script>
+
+    <link rel='stylesheet' href='css/style.css' />
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <img class="thumbnail" src="src/icon.png">
+          </a>
+          <a class="navbar-brand" href="/">
+            <h3 style="display: inline">The Prime Meridian</h3>
+          </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li>v<%= version%></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="main">
+      <div ng-view></div>
+    </div>
+  </body>
+</html>
