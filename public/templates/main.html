@@ -36,12 +36,14 @@
 <div class="row">
     <div class="col-sx-3 col-sm-3 col-md-3 col-lg-3">
         <div class="row" ng-repeat="item in selectedBoss.loot"ng-repeat="item in SelectedBoss.loot trackBy $index">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <a class="" href="https://classic.wowhead.com/item={{item.itemId}}" target="_blank">
-                    <img class="itemIcon" ng-src="{{item.iconUrl}}"><b ng-class="'q'+item.quality">{{item.name}}</b> {{item.slot}} GP: {{calculateGP(item.gpBase,settings.defaultMultiplier[item.slot])}}
-                </a>
-                <button ng-click="refreshItem(item, $index)">refresh</button>
+            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                    <a class="" href="https://classic.wowhead.com/item={{item.itemId}}" target="_blank">
+                        <img class="itemIcon" ng-src="{{item.iconUrl}}"><b ng-class="'q'+item.quality">{{item.name}}</b>
+                    </a>
             </div>
         </div>
+    </div>
+    <div class="col-sx-9 col-sm-9 col-md-9 col-lg-9">
+        <textarea style="width: 100%; min-height: 100rem; background-color: black;">{{body}}</textarea>
     </div>
 </div>

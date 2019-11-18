@@ -217,4 +217,24 @@ router.post('/wowhead-request', function (req, res, next) {
     }
 });
 
+router.post('/wowhead-tooltip', function (req, res, next) {
+    let url = "https://classic.wowhead.com/";
+
+    if(req.body.itemId){
+        url += "item=" + req.body.itemId;
+    }
+
+    request(url)
+    .then(function (html) {
+        //console.log(html);
+        let test = "\\(\\d, \\d, \\{\"" + req.body.itemId;
+        let itemData = html.substring(html.search(new RegExp(test)));
+        itemData = itemData.substring(0,itemData.search(/\);/));
+        itemData = itemData.substring(itemData.search("{"));
+        itemData = JSON.parse(itemData);
+        console.log(itemData);
+        res.send(itemData[req.body.itemId]);
+    });
+});
+
 module.exports = router;

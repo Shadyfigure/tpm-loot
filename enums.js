@@ -35,22 +35,22 @@ exports.itemSlots = {
         "Legs",
         "Feet",
         "Wrist",
-         "Hands",
-         "Finger",
-         "Trinket",
-         "Back",
-         "Main Hand",
-         "Off Hand",
-         "Ranged",
-         "Tabard",
-         "Bag",
-         "Two-Hand",
-         "Relic",
-         "One-Hand",
-         "Quest Item"
+        "Hands",
+        "Finger",
+        "Trinket",
+        "Back",
+        "Main Hand",
+        "Off Hand",
+        "Ranged",
+        "Tabard",
+        "Bag",
+        "Two-Hand",
+        "Relic",
+        "One-Hand",
+        "Quest Item",
+        "Held in Off-hand"
     ],
-    byNumber: {
-        0: "Ammo",
+    slotbak: {
         1: "Head",
         2: "Neck",
         3: "Shoulder",
@@ -62,42 +62,21 @@ exports.itemSlots = {
         9: "Wrist",
         10: "Hands",
         11: "Finger",
-        13: "Trinket",
-        15: "Back",
-        16: "Main Hand",
-        17: "Off Hand",
-        18: "Ranged",
+        12: "Trinket",
+        13: "One-Hand",
+        14: "Off Hand",//shield
+        15: "Ranged",//bow
+        17: "Two-Hand",
+        16: "Back",
+        18: "Bag",
         19: "Tabard",
-        20: "Bag",
-        24: "Two-Hand",
-        25: "Relic",
-        26: "One-Hand",
-        29: "Quest Item"
-    },
-    byName: {
-        "Ammo": 0,
-        "Head": 1,
-        "Neck": 2,
-        "Shoulder": 3,
-        "Shirt": 4,
-        "Chest": 5,
-        "Waist": 6,
-        "Legs": 7,
-        "Feet": 8,
-        "Wrist": 9,
-        "Hands": 10,
-        "Finger": 11,
-        "Trinket": 13,
-        "Back": 15,
-        "Main Hand": 16,
-        "Off Hand": 17,
-        "Ranged": 18,
-        "Tabard": 19,
-        "Bag": 20,
-        "Two-Hand": 24,
-        "Relic": 25,
-        "One-Hand": 26,
-        "Quest Item": 29
+        21: "Main Hand",
+        22: "Off Hand",//offhand weapon
+        23: "Off Hand",//held in offhand
+        24: "Projectile",
+        25: "Bag",//quiver
+        26: "Ranged",//gun/xbow/wand
+        28: "Relic"
     }
 };
 
@@ -163,16 +142,18 @@ exports.instances = {
 
 exports.itemRarityVal = {
     byName: {
-        Green: 2,
-        Blue: 3,
-        Purple: 4,
-        Orange: 5
+        Common: 1,
+        Uncommon: 2,
+        Rare: 3,
+        Epic: 4,
+        Legendary: 5
     },
     byNumber: {
-        2: "Green",
-        3: "Blue",
-        4: "Purple",
-        5: "Orange"
+        1: "Common",
+        2: "Uncommon",
+        3: "Rare",
+        4: "Epic",
+        5: "Legendary"
     }
 };
 

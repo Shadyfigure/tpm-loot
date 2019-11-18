@@ -1,7 +1,7 @@
 (function () {
 angular.module('tpmGuildloot')
-.controller('main',['$scope','$http',
-function ($scope, $http) {
+.controller('main',['$scope','$http', '$sce',
+function ($scope, $http, $sce) {
     $http.get('enums')
     .then(function (res) {
         $scope.enums = res.data;
@@ -56,6 +56,18 @@ function ($scope, $http) {
 
     $scope.calculateGP = function (base, multiplier) {
         return Math.round(base * multiplier);
+    }
+
+    $http.post(
+        'lootlist/wowhead-tooltip',
+        {itemId:19349}
+    )
+    .then(function (res) {
+        $scope.body = JSON.stringify(res.data, undefined, 2);
+    })
+
+    $scope.renderHtml = function (body) {
+        return $sce.trustAsHtml(body);
     }
 }]);
 })();
