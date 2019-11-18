@@ -47,8 +47,6 @@ exports.itemSlots = {
          "Two-Hand",
          "Relic",
          "One-Hand",
-         "Pet",
-         "Mount",
          "Quest Item"
     ],
     byNumber: {
@@ -74,8 +72,6 @@ exports.itemSlots = {
         24: "Two-Hand",
         25: "Relic",
         26: "One-Hand",
-        27: "Pet",
-        28: "Mount",
         29: "Quest Item"
     },
     byName: {
@@ -101,8 +97,6 @@ exports.itemSlots = {
         "Two-Hand": 24,
         "Relic": 25,
         "One-Hand": 26,
-        "Pet": 27,
-        "Mount": 28,
         "Quest Item": 29
     }
 };

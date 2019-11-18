@@ -178,14 +178,16 @@ router.post('/wowhead-request', function (req, res, next) {
             itemObj.gpBase = helpers.gpCalc(iLvl,quality);
 
             itemObj.slot = "NONE";
+            let noName = itemData.substring(itemData.search("Binds when"));
+            console.log(noName);
             for(let i = 0; i < enums.itemSlots.array.length; i++){
-                if(itemData.indexOf(enums.itemSlots.array[i]) > -1){
+                if(noName.indexOf(enums.itemSlots.array[i]) > -1){
                     itemObj.slot = enums.itemSlots.array[i];
                     break;
                 }
             }
             //special case for "Held In Off-hand" items
-            if(itemData.indexOf("Held In Off-hand") > -1){
+            if(noName.indexOf("Held In Off-hand") > -1){
                 itemObj.slot = "Off Hand";
             }
 
