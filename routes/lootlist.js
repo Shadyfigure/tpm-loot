@@ -179,7 +179,6 @@ router.post('/wowhead-request', function (req, res, next) {
 
             itemObj.slot = "NONE";
             let noName = itemData.substring(itemData.search("Binds when"));
-            console.log(noName);
             for(let i = 0; i < enums.itemSlots.array.length; i++){
                 if(noName.indexOf(enums.itemSlots.array[i]) > -1){
                     itemObj.slot = enums.itemSlots.array[i];
