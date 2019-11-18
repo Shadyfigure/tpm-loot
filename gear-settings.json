@@ -51,6 +51,7 @@
   },
   "defaultMultiplier": {
     "NONE": 1,
+    "Quest Item": 1,
     "Two-Hand": 2,
     "One-Hand": 1.5,
     "Main Hand": 1.5,
@@ -61,11 +62,11 @@
     "Hands": 0.75,
     "Waist": 0.75,
     "Feet": 0.75,
-    "Trinket": 0.75,
+    "Trinket": 1,
     "Wrist": 0.5,
-    "Neck": 0.5,
+    "Neck": 0.75,
     "Back": 0.5,
-    "Finger": 0.5,
+    "Finger": 1,
     "Off Hand": 0.5,
     "Ranged": 0.5,
     "Relic": 0.5

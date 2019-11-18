@@ -40,7 +40,7 @@ exports.itemSlots = {
          "Trinket",
          "Back",
          "Main Hand",
-         "Off hand",
+         "Off Hand",
          "Ranged",
          "Tabard",
          "Bag",
@@ -49,7 +49,7 @@ exports.itemSlots = {
          "One-Hand",
          "Pet",
          "Mount",
-         "Quest"
+         "Quest Item"
     ],
     byNumber: {
         0: "Ammo",
@@ -67,7 +67,7 @@ exports.itemSlots = {
         13: "Trinket",
         15: "Back",
         16: "Main Hand",
-        17: "Off hand",
+        17: "Off Hand",
         18: "Ranged",
         19: "Tabard",
         20: "Bag",
@@ -76,7 +76,7 @@ exports.itemSlots = {
         26: "One-Hand",
         27: "Pet",
         28: "Mount",
-        29: "Quest"
+        29: "Quest Item"
     },
     byName: {
         "Ammo": 0,
@@ -103,7 +103,7 @@ exports.itemSlots = {
         "One-Hand": 26,
         "Pet": 27,
         "Mount": 28,
-        "Quest": 29
+        "Quest Item": 29
     }
 };
 

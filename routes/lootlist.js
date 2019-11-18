@@ -162,6 +162,9 @@ router.post('/wowhead-request', function (req, res, next) {
 
             let itemData = html.substring(html.search(".tooltip_enus")+".tooltip_enus = \"".length);
             itemData = itemData.substring(0,itemData.search("\";"));
+            if(itemData.indexOf("item-set") > -1){
+                itemData = itemData.substring(0,itemData.search("item-set"));
+            }
 
             let iLvl = itemData.substring(itemData.search("<!--ilvl-->")+11);
             iLvl = iLvl.substring(0,iLvl.search("<"));
@@ -174,28 +177,27 @@ router.post('/wowhead-request', function (req, res, next) {
 
             itemObj.gpBase = helpers.gpCalc(iLvl,quality);
 
+            itemObj.slot = "NONE";
             for(let i = 0; i < enums.itemSlots.array.length; i++){
-                if(itemData.indexOf("<td>"+enums.itemSlots.array[i]) > -1){
+                if(itemData.indexOf(enums.itemSlots.array[i]) > -1){
                     itemObj.slot = enums.itemSlots.array[i];
                     break;
                 }
-                else{
-                    itemObj.slot = "NONE";
-                }
+            }
+            //special case for "Held In Off-hand" items
+            if(itemData.indexOf("Held In Off-hand") > -1){
+                itemObj.slot = "Off Hand";
             }
 
+            itemObj.weapon = "NO";
             for(let i = 0; i < enums.weaponType.array.length; i++){
                 if(itemData.indexOf(enums.weaponType.array[i]) > -1){
                     itemObj.weapon = enums.weaponType.array[i];
                     break;
                 }
-                else{
-                    itemObj.weapon = "NO";
-                }
             }
 
             console.log("WoWHead query on item: ", req.body.itemId);
-            console.log(itemObj);
             return itemObj;
         })
         .then(function () {
