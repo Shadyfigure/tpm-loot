@@ -172,8 +172,8 @@ router.post('/wowhead-request', function (req, res, next) {
             itemObj.iconUrl = settings.iconSource + "large/" + itemData.icon + ".jpg";
             itemObj.quality = parseInt(itemData.quality);
 
-            if(itemData.slotbak) {
-                itemObj.slot = enums.itemSlots.slotbak(itemData.slotbak);
+            if(itemData.jsonequip.slotbak && Object.keys(enums.itemSlots.slotbak).includes(itemData.jsonequip.slotbak.toString())) {
+                itemObj.slot = enums.itemSlots.slotbak[itemData.jsonequip.slotbak];
             }
             else{
                 itemObj.slot = "NONE";
@@ -183,6 +183,10 @@ router.post('/wowhead-request', function (req, res, next) {
             itemString = itemString.substring(0,itemString.search("\";"));
             if(itemString.indexOf("item-set") > -1){
                 itemString = itemString.substring(0,itemString.search("item-set"));
+            }
+
+            if(itemString.includes("Quest Item")){
+                itemObj.slot = "Quest";
             }
 
             let iLvl = itemString.substring(itemString.search("<!--ilvl-->")+11);
@@ -199,14 +203,13 @@ router.post('/wowhead-request', function (req, res, next) {
                     break;
                 }
             }
-
-            console.log("WoWHead query on item: ", req.body.itemId);
             return itemObj;
         })
         .then(function () {
             return Item.findOneAndUpdate({itemId:req.body.itemId},itemObj,{new:true}).exec();
         })
         .then(function (item) {
+            console.log("WoWHead query on item: ", item.name);
             res.status(200).send(item);
         })
         .catch(function (err) {

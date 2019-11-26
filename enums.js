@@ -70,13 +70,16 @@ exports.itemSlots = {
         16: "Back",
         18: "Bag",
         19: "Tabard",
+        20: "Chest",
         21: "Main Hand",
         22: "Off Hand",//offhand weapon
         23: "Off Hand",//held in offhand
         24: "Projectile",
         25: "Bag",//quiver
         26: "Ranged",//gun/xbow/wand
-        28: "Relic"
+        28: "Relic",
+        998: "Quest",
+        999: "NONE"
     }
 };
 

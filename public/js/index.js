@@ -19,7 +19,7 @@ angular.module('tpmGuildloot',['ngRoute', 'ui.bootstrap'])
         controller: 'instances'
     })
     .when('/set-priority',{
-        templateUrl: 'templates/set-priority',
+        templateUrl: 'templates/set-priority.html',
         controller: 'set-priority'
     })
     .otherwise({redirectTo:'/'});

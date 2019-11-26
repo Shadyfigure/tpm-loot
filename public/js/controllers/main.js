@@ -56,21 +56,6 @@ function ($scope, $http) {
 
     $scope.clearLoot = function(){
         $scope.lootList = [];
-    }
-
-    $scope.refreshItem = function (item, i) {
-        $http.post(
-            'lootlist/wowhead-request',
-            {itemId:item.itemId}
-        )
-        .then(function (res) {
-            if(i !== undefined){
-                $scope.selectedBoss.loot[i] = res.data;
-            }
-        })
-        .catch(function (err) {
-            console.error(err);
-        });
     };
 
     $scope.calculateGP = function (base, multiplier) {

@@ -146,6 +146,7 @@
   },
   "gpMultiplier": {
     "NONE": 1,
+    "Bag": 0.5,
     "Quest Item": 1,
     "Two-Hand": 2,
     "One-Hand": 1.5,
@@ -164,7 +165,9 @@
     "Finger": 1,
     "Off Hand": 0.5,
     "Ranged": 0.5,
-    "Relic": 0.5
+    "Relic": 0.5,
+    "Projectile": 0.5,
+    "Quest": 1
   },
   "racialPriority": {
     "Orc": ["Axe"],
