@@ -45,14 +45,27 @@
         </a>
     </div>
     <div class="col-sm-1">
-        <button class="btn" ng-class="lootList.includes(item) ? 'btn-danger' : 'btn-warning'" ng-click="refreshItem(item, $index)">
-            <i class="fas fa-sync"></i>
+        <button class="btn" ng-class="lootList.includes(item) ? 'btn-danger' : 'btn-success'" ng-click="editItem(item, $index)">
+            <i class="fas fa-cog"></i>
         </button>
     </div>
      <div class="col-sm-1">
-         {{ item.slot }}
+         <button class="btn" ng-class="lootList.includes(item) ? 'btn-danger' : 'btn-warning'" ng-click="refreshItem(item, $index)">
+             <i class="fas fa-sync"></i>
+         </button>
      </div>
      <div class="col-sm-1">
-         {{ calculateGP(item.gpBase, settings.gpMultiplier[item.slot]) }}
+         GP: {{ calculateGP(item.gpBase, settings.gpMultiplier[item.slot]) }}
+     </div>
+     <div class="col-sm-6">
+         <div>
+             <span ng-repeat="profile in settings.priorityProfiles">
+                     <img
+                         style="margin: 1px"
+                         ng-src="{{settings.iconSource}}small/{{profile.icon}}.jpg"
+                         uib-tooltip="{{settings.priorityKey[profile.id]}}"
+                     />
+             </span>
+         </div>
      </div>
 </div>

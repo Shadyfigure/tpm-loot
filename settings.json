@@ -1,147 +1,160 @@
 {
-  "classes": {
-    "Druid": {
-      "roles": {
-        "tank": {
-          "icon": "ability_racial_bearform",
-          "spec": "Feral"
-        },
-        "melee": {
-          "icon": "ability_druid_catform",
-          "spec": "Feral"
-        },
-        "caster": {
-          "icon": "spell_nature_starfall",
-          "spec": "Balance"
-        },
-        "healer": {
-          "icon": "spell_nature_healingtouch",
-          "spec": "Restoration"
-        }
-      },
-      "icon": "classicon_druid"
+  "priorityKey": {
+    "1": "druid-tank",
+    "2": "druid-melee",
+    "3": "druid-caster",
+    "4": "druid-healer",
+    "5": "hunter-ranged",
+    "6": "mage-caster",
+    "7": "paladin-tank",
+    "8": "paladin-melee",
+    "9": "paladin-healer",
+    "10": "priest-healer",
+    "11": "priest-caster",
+    "12": "rogue-dagger",
+    "13": "rogue-sword",
+    "14": "shaman-melee",
+    "15": "shaman-caster",
+    "16": "shaman-healer",
+    "17": "warlock-caster",
+    "18": "warrior-2h",
+    "19": "warrior-dw",
+    "20": "warrior-tank",
+    "21": "warrior-threat",
+    "22": "guild",
+    "23": "pvp"
+  },
+  "priorityProfiles": {
+    "druid-tank": {
+      "id": 1,
+      "icon": "ability_racial_bearform",
+      "spec": "Feral",
+      "class": "Druid"
     },
-    "Hunter": {
-      "roles": {
-        "ranged": {
-          "icon": "classicon_hunter"
-        }
-      },
-      "gpModifiers": {
-        "Two-Hand": 1,
-        "One-Hand": 0.5,
-        "Main Hand": 0.5,
-        "Off Hand": 0.5,
-        "Ranged": 1.5
-      },
-      "icon": "classicon_druid"
+    "druid-melee": {
+      "id": 2,
+      "icon": "ability_druid_catform",
+      "spec": "Feral",
+      "class": "Druid"
     },
-    "Mage": {
-      "roles": {
-        "caster": {
-          "icon": "classicon_mage"
-        }
-      },
-      "icon": "classicon_mage"
+    "druid-caster": {
+      "id": 3,
+      "icon": "spell_nature_starfall",
+      "spec": "Balance",
+      "class": "Druid"
     },
-    "Paladin": {
-      "roles": {
-        "tank": {
-          "icon": "ability_paladin_shieldofthetemplar",
-          "spec": "Protection"
-        },
-        "melee": {
-          "icon": "spell_holy_auraoflight",
-          "spec": "Retribution"
-        },
-        "healer": {
-          "icon": "spell_holy_holybolt",
-          "spec": "Holy"
-        }
-      },
-      "icon": "classicon_paladin"
+    "druid-healer": {
+      "id": 4,
+      "icon": "spell_nature_healingtouch",
+      "spec": "Restoration",
+      "class": "Druid"
     },
-    "Priest": {
-      "roles": {
-        "healer": {
-          "icon": "spell_holy_guardianspirit",
-          "spec": "Holy"
-        },
-        "caster": {
-          "icon": "spell_shadow_shadowwordpain",
-          "spec": "Shadow"
-        }
-      },
-      "icon": "classicon_priest"
+    "hunter-ranged": {
+      "id": 5,
+      "icon": "classicon_hunter",
+      "class": "Hunter"
     },
-    "Rogue": {
-      "roles": {
-        "dagger": {
-          "icon": "classicon_rogue",
-          "spec": "Combat"
-        },
-        "sword": {
-          "icon": "inv_sword_30",
-          "spec": "Combat"
-        }
-      },
-      "gpModifiers": {
-        "One-Hand": 1,
-        "Main Hand": 1,
-        "Off Hand": 1
-      },
-      "icon": "classicon_rogue"
+    "mage-caster": {
+      "id": 6,
+      "icon": "classicon_mage",
+      "class": "Mage"
     },
-    "Shaman": {
-      "roles": {
-        "melee": {
-          "icon": "spell_shaman_improvedstormstrike",
-          "spec": "Enhancement"
-        },
-        "caster": {
-          "icon": "spell_nature_lightning",
-          "spec": "Elemental"
-        },
-        "healer": {
-          "icon": "spell_nature_magicimmunity",
-          "spec": "Restoration"
-        }
-      },
-      "icon": "classicon_shaman"
+    "paladin-tank": {
+      "id": 7,
+      "icon": "ability_paladin_shieldofthetemplar",
+      "spec": "Protection",
+      "class": "Paladin"
     },
-    "Warlock": {
-      "roles": {
-        "caster": {
-          "icon": "classicon_warlock"
-        }
-      },
-      "icon": "classicon_warlock"
+    "paladin-melee": {
+      "id": 8,
+      "icon": "spell_holy_auraoflight",
+      "spec": "Retribution",
+      "class": "Paladin"
     },
-    "Warrior": {
-      "roles": {
-        "two-handed": {
-          "icon": "ability_warrior_savageblow",
-          "spec": "Fury"
-        },
-        "dual-wield": {
-          "icon": "ability_warrior_innerrage",
-          "spec": "Fury"
-        },
-        "tank": {
-          "icon": "ability_warrior_defensivestance",
-          "spec": "Protection"
-        },
-        "threat": {
-          "icon": "spell_nature_reincarnation",
-          "spec": "Protection"
-        }
-      },
-      "gpModifiers": {
-        "One-Hand": 1,
-        "Main Hand": 1,
-        "Off Hand": 1
-      },
-      "icon": "classicon_warrior"
+    "paladin-healer": {
+      "id": 9,
+      "icon": "spell_holy_holybolt",
+      "spec": "Holy",
+      "class": "Paladin"
+    },
+    "priest-healer": {
+      "id": 10,
+      "icon": "spell_holy_guardianspirit",
+      "spec": "Holy",
+      "class": "Priest"
+    },
+    "priest-caster": {
+      "id": 11,
+      "icon": "spell_shadow_shadowwordpain",
+      "spec": "Shadow",
+      "class": "Priest"
+    },
+    "rogue-dagger": {
+      "id": 12,
+      "icon": "classicon_rogue",
+      "spec": "Combat",
+      "class": "Rogue"
+    },
+    "rogue-sword": {
+      "id": 13,
+      "icon": "inv_sword_30",
+      "spec": "Combat",
+      "class": "Rogue"
+    },
+    "shaman-melee": {
+      "id": 14,
+      "icon": "spell_shaman_improvedstormstrike",
+      "spec": "Enhancement",
+      "class": "Shaman"
+    },
+    "shaman-caster": {
+      "id": 15,
+      "icon": "spell_nature_lightning",
+      "spec": "Elemental",
+      "class": "Shaman"
+    },
+    "shaman-healer": {
+      "id": 16,
+      "icon": "spell_nature_magicimmunity",
+      "spec": "Restoration",
+      "class": "Shaman"
+    },
+    "warlock-caster": {
+      "id": 17,
+      "icon": "classicon_warlock",
+      "class": "Warlock"
+    },
+    "warrior-2h": {
+      "id": 18,
+      "icon": "ability_warrior_savageblow",
+      "spec": "Fury",
+      "class": "Warrior"
+    },
+    "warrior-dw": {
+      "id": 19,
+      "icon": "ability_warrior_innerrage",
+      "spec": "Fury",
+      "class": "Warrior"
+    },
+    "warrior-tank": {
+      "id": 20,
+      "icon": "ability_warrior_defensivestance",
+      "spec": "Protection",
+      "class": "Warrior"
+    },
+    "warrior-threat": {
+      "id": 21,
+      "icon": "spell_nature_reincarnation",
+      "spec": "Protection",
+      "class": "Warrior"
+    },
+    "guild": {
+      "id": 22,
+      "icon": "inv_shirt_guildtabard_01"
+    },
+    "pvp": {
+      "id": 23,
+      "icon": "ability_warrior_challange"
     }
   },
   "gpMultiplier": {
@@ -168,6 +181,28 @@
     "Relic": 0.5,
     "Projectile": 0.5,
     "Quest": 1
+  },
+  "classMultiplierOverride": {
+    "Hunter": {
+      "icon": "classicon_hunter",
+      "Two-Hand": 1,
+      "One-Hand": 0.5,
+      "Main Hand": 0.5,
+      "Off Hand": 0.5,
+      "Ranged": 1.5
+    },
+    "Rogue": {
+      "icon": "classicon_rogue",
+      "One-Hand": 1,
+      "Main Hand": 1,
+      "Off Hand": 1
+    },
+    "Warrior": {
+      "icon": "classicon_warrior",
+      "One-Hand": 1,
+      "Main Hand": 1,
+      "Off Hand": 1
+    }
   },
   "racialPriority": {
     "Orc": ["Axe"],

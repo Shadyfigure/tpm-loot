@@ -19,14 +19,6 @@ a {
   padding: 5px;
 }
 
-.thumbnail {
-  max-height: 50px;
-  margin-top: -15px;
-  background-color: transparent;
-  border-color: transparent;
-  display: inline;
-}
-
 .lootWindow {
   margin: 15px;
   border-color: whitesmoke;
@@ -34,6 +26,20 @@ a {
   border-width: 1px;
 }
 
+.modal-body, .modal-header, .modal-footer {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black;
+  color: #C0C0C0;
+}
+
 .stripeList {
   background-color: #0f0f0f;
+}
+
+.thumbnail {
+  max-height: 50px;
+  margin-top: -15px;
+  background-color: transparent;
+  border-color: transparent;
+  display: inline;
 }

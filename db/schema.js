@@ -116,12 +116,15 @@ let itemSchema = new Schema({
     quality:    {type: Number},
     slot:       {type: String},
     weapon:     {type: String},
+    override:   {type: Boolean, default:false},
     priority:   {
-        p6: [{type:String}],
-        p5: [{type:String}],
-        p4: [{type:String}],
-        p3: [{type:String}],
-        p2: [{type:String}]
+        p6: [{type:Number}],
+        p5: [{type:Number}],
+        p4: [{type:Number}],
+        p3: [{type:Number}],
+        p2: [{type:Number}],
+        up: [{type:Number}],
+        no: [{type:Number}]
     }
 });
 

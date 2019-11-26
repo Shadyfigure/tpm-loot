@@ -1,0 +1,17 @@
+<div style="border: ghostwhite; border-width: 1px; border-style: solid">
+<div class="modal-header">
+    <h2>
+        Editing Item: 
+        <a ng-class="'q'+item.quality" href="https://classic.wowhead.com/item={{item.itemId}}">
+            {{item.name}}
+            <img ng-src="{{item.iconUrl}}"/>
+        </a>
+    </h2>
+</div>
+<div class="modal-body">
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
+</div>

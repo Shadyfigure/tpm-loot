@@ -137,6 +137,10 @@ router.post('/get-items', function (req, res, next) {
     });
 });
 
+router.post('/update-item', function (req, res, next) {
+
+});
+
 router.post('/wowhead-request', function (req, res, next) {
     let url = "https://classic.wowhead.com/";
 
@@ -206,7 +210,7 @@ router.post('/wowhead-request', function (req, res, next) {
             return itemObj;
         })
         .then(function () {
-            return Item.findOneAndUpdate({itemId:req.body.itemId},itemObj,{new:true}).exec();
+            return Item.findOneAndUpdate({itemId:req.body.itemId, override:false},itemObj,{new:true}).exec();
         })
         .then(function (item) {
             console.log("WoWHead query on item: ", item.name);
