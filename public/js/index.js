@@ -18,6 +18,10 @@ angular.module('tpmGuildloot',['ngRoute', 'ui.bootstrap'])
         templateUrl: 'templates/instances.html',
         controller: 'instances'
     })
+    .when('/set-priority',{
+        templateUrl: 'templates/set-priority',
+        controller: 'set-priority'
+    })
     .otherwise({redirectTo:'/'});
 
     $locationProvider.html5Mode(true);

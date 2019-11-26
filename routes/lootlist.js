@@ -14,15 +14,6 @@ let Boss = mongoose.model("Boss");
 let Instance = mongoose.model("Instance");
 let Item = mongoose.model("Item");
 
-fs.readFile(__dirname+"/../settings.json", "utf8", function (err, data) {
-    if(err){
-        res.status(500).send(err);
-    }
-    else{
-        res.status(200).send(JSON.parse(data));
-    }
-});
-
 let bossSearch = function(query){
     return Boss.find(query).exec()
     .then(function (bosses) {
