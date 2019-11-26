@@ -115,7 +115,14 @@ let itemSchema = new Schema({
     name:       {type: String, required:true},
     quality:    {type: Number},
     slot:       {type: String},
-    weapon:     {type: String}
+    weapon:     {type: String},
+    priority:   {
+        p6: [{type:String}],
+        p5: [{type:String}],
+        p4: [{type:String}],
+        p3: [{type:String}],
+        p2: [{type:String}]
+    }
 });
 
 exports.itemModel = mongoose.model("Item", itemSchema);

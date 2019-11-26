@@ -1,7 +1,9 @@
 (function () {
 angular.module('tpmGuildloot')
-.controller('main',['$scope','$http', '$sce',
-function ($scope, $http, $sce) {
+.controller('main',['$scope','$http',
+function ($scope, $http) {
+    $scope.lootList = [];
+
     $http.get('enums')
     .then(function (res) {
         $scope.enums = res.data;
@@ -38,7 +40,23 @@ function ($scope, $http, $sce) {
 
     $scope.selectBoss = function (boss) {
         $scope.selectedBoss = boss;
+        $scope.clearLoot();
     };
+
+    $scope.selectItem = function(item) {
+        console.log(item);
+        let index = $scope.lootList.indexOf(item);
+        if(index > -1){
+            $scope.lootList.splice(index,1);
+        }
+        else{
+            $scope.lootList.push(item);
+        }
+    };
+
+    $scope.clearLoot = function(){
+        $scope.lootList = [];
+    }
 
     $scope.refreshItem = function (item, i) {
         $http.post(
@@ -46,28 +64,17 @@ function ($scope, $http, $sce) {
             {itemId:item.itemId}
         )
         .then(function (res) {
-            console.log(res.data);
-            $scope.selectedBoss.loot[i] = res.data;
+            if(i !== undefined){
+                $scope.selectedBoss.loot[i] = res.data;
+            }
         })
         .catch(function (err) {
             console.error(err);
         });
-    }
+    };
 
     $scope.calculateGP = function (base, multiplier) {
         return Math.round(base * multiplier);
-    }
-
-    $http.post(
-        'lootlist/wowhead-tooltip',
-        {itemId:19349}
-    )
-    .then(function (res) {
-        $scope.body = JSON.stringify(res.data, undefined, 2);
-    })
-
-    $scope.renderHtml = function (body) {
-        return $sce.trustAsHtml(body);
-    }
+    };
 }]);
 })();

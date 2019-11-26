@@ -1,3 +1,86 @@
-<div class="row">
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li class="navbar-brand">Raids</li>
+            <li class="navbar-brand">|</li>
+            <li ng-class="raid === selectedRaid ? 'active' : ''" ng-repeat="raid in raids">
+                <a href="#" ng-click="selectRaid(raid)">
+                    {{enums.instances.fromDB[raid.name]}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
+<nav ng-if="selectedRaid" class="navbar navbar-inverse">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li class="navbar-brand">Bosses</li>
+            <li class="navbar-brand">|</li>
+            <li ng-repeat="boss in bosses" ng-class="boss === selectedBoss ? 'active' : ''">
+                <a href="#" ng-click="selectBoss(boss)">
+                    {{boss.name}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="row">
+    <h2 ng-if="!selectedRaid">Select a raid above...</h2>
+    <h2 ng-if="selectedRaid && !selectedBoss">Select a boss above</h2>
+    <h2 ng-if="selectedRaid && selectedBoss">{{enums.instances.fromDB[selectedRaid.name]}}: {{selectedBoss.name}}</h2>
+    <hr>
+</div>
+<div class="row" ng-if="selectedRaid && selectedBoss">
+    <div class="col-sm-offset-10 col-sm-1">
+        <button class="btn btn-warning" ng-click="clearLoot()">Reset Loot</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sx-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="row" ng-repeat="item in selectedBoss.loot | orderBy : 'name'" ng-class-odd="'stripeList'">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <a class="" href="https://classic.wowhead.com/item={{item.itemId}}" target="_blank">
+                    <img class="itemIcon" ng-src="{{item.iconUrl}}"><b ng-class="'q'+item.quality">{{item.name}}</b>
+                </a>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <button class="btn" ng-class="lootList.includes(item) ? 'btn-danger' : 'btn-primary'" ng-click="selectItem(item)">
+                    <i class="fas fa-dragon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8 lootWindow" ng-if="selectedRaid && selectedBoss">
+        <div class="row">
+            <div class="col-sm-4">
+                <h4><u>Loot</u></h4>
+            </div>
+            <div class="col-sm-1">
+                <h4><u>GP</u></h4>
+            </div>
+            <div class="col-sm-7">
+                <h4><u>Priority</u></h4>
+            </div>
+        </div>
+        <div class="row" ng-repeat="item in lootList" ng-class-odd="'stripeList'">
+            <div class="col-sm-4">
+                <a class="" href="https://classic.wowhead.com/item={{item.itemId}}" target="_blank">
+                    <img class="lootIcon" ng-src="{{item.iconUrl}}"><b ng-class="'q'+item.quality">{{item.name}}</b>
+                </a>
+            </div>
+            <div class="col-sm-1">
+                <h4>{{ calculateGP(item.gpBase, settings.gpMultiplier[item.slot]) }}</h4>
+            </div>
+            <div class="col-sm-7">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-if="selectedRaid && selectedBoss">
+    <div class="col-sm-offset-10 col-sm-1">
+        <button class="btn btn-warning" ng-click="clearLoot()">Reset Loot</button>
+    </div>
 </div>

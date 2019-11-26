@@ -3,13 +3,25 @@ let express = require('express');
 let router = express.Router();
 let Promise = require('bluebird');
 let request = require('request-promise');
+let fs = require('fs');
 
 let enums = require('../enums');
 let helpers = require('../helpers');
 
+let settings = JSON.parse(fs.readFileSync(__dirname+"/../settings.json", "utf8"));
+
 let Boss = mongoose.model("Boss");
 let Instance = mongoose.model("Instance");
 let Item = mongoose.model("Item");
+
+fs.readFile(__dirname+"/../settings.json", "utf8", function (err, data) {
+    if(err){
+        res.status(500).send(err);
+    }
+    else{
+        res.status(200).send(JSON.parse(data));
+    }
+});
 
 let bossSearch = function(query){
     return Boss.find(query).exec()
@@ -148,51 +160,50 @@ router.post('/wowhead-request', function (req, res, next) {
     // res.header("Access-Control-Allow-Origin",  resSettings.AccessControlAllowOrigin);
     // res.header("Access-Control-Allow-Headers", (req.headers['access-control-request-headers']) ? req.headers['access-control-request-headers'] : "x-requested-with");
     // res.header("Access-Control-Allow-Methods", (req.headers['access-control-request-method']) ? req.headers['access-control-request-method'] : resSettings.AccessControlAllowMethods);
-
     if(req.body.itemId){
         let itemObj = {};
 
-        url += "item=" + req.body.itemId;
+        let url = "https://classic.wowhead.com/";
+
+        if(req.body.itemId){
+            url += "item=" + req.body.itemId;
+        }
 
         request(url)
         .then(function (html) {
-            let iconUrl = html.substring(html.search("image_src")+17);
-            iconUrl = iconUrl.substring(0,iconUrl.search("\">"));
-            itemObj.iconUrl = iconUrl;
+            let test = "\\(\\d, \\d, \\{\"" + req.body.itemId;
+            let itemData = html.substring(html.search(new RegExp(test)));
+            itemData = itemData.substring(0,itemData.search(/\);/));
+            itemData = itemData.substring(itemData.search("{"));
+            itemData = JSON.parse(itemData);
+            itemData = itemData[req.body.itemId];
 
-            let itemData = html.substring(html.search(".tooltip_enus")+".tooltip_enus = \"".length);
-            itemData = itemData.substring(0,itemData.search("\";"));
-            if(itemData.indexOf("item-set") > -1){
-                itemData = itemData.substring(0,itemData.search("item-set"));
+            itemObj.iconUrl = settings.iconSource + "large/" + itemData.icon + ".jpg";
+            itemObj.quality = parseInt(itemData.quality);
+
+            if(itemData.slotbak) {
+                itemObj.slot = enums.itemSlots.slotbak(itemData.slotbak);
+            }
+            else{
+                itemObj.slot = "NONE";
             }
 
-            let iLvl = itemData.substring(itemData.search("<!--ilvl-->")+11);
+            let itemString = html.substring(html.search(".tooltip_enus")+".tooltip_enus = \"".length);
+            itemString = itemString.substring(0,itemString.search("\";"));
+            if(itemString.indexOf("item-set") > -1){
+                itemString = itemString.substring(0,itemString.search("item-set"));
+            }
+
+            let iLvl = itemString.substring(itemString.search("<!--ilvl-->")+11);
             iLvl = iLvl.substring(0,iLvl.search("<"));
             iLvl = parseInt(iLvl);
             itemObj.iLvl = iLvl;
 
-            let quality = itemData.substring(itemData.search("q")+1,itemData.search("q")+2);
-            quality = parseInt(quality);
-            itemObj.quality = quality;
-
-            itemObj.gpBase = helpers.gpCalc(iLvl,quality);
-
-            itemObj.slot = "NONE";
-            let noName = itemData.substring(itemData.search("Binds when"));
-            for(let i = 0; i < enums.itemSlots.array.length; i++){
-                if(noName.indexOf(enums.itemSlots.array[i]) > -1){
-                    itemObj.slot = enums.itemSlots.array[i];
-                    break;
-                }
-            }
-            //special case for "Held In Off-hand" items
-            if(noName.indexOf("Held In Off-hand") > -1){
-                itemObj.slot = "Off Hand";
-            }
+            itemObj.gpBase = helpers.gpCalc(itemObj.iLvl,itemObj.quality);
 
             itemObj.weapon = "NO";
             for(let i = 0; i < enums.weaponType.array.length; i++){
-                if(itemData.indexOf(enums.weaponType.array[i]) > -1){
+                if(itemString.indexOf(enums.weaponType.array[i]) > -1){
                     itemObj.weapon = enums.weaponType.array[i];
                     break;
                 }
@@ -213,7 +224,10 @@ router.post('/wowhead-request', function (req, res, next) {
         });
     }
     else if(req.body.npcId){
-        url += "npc=" + req.body.npcId;
+        res.status(500).send("WoWhead search for NPC not currently active.");
+    }
+    else{
+        res.status(400).send("Bad Request");
     }
 });
 

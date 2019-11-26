@@ -15,7 +15,7 @@ router.get('/role', function (req, res, next) {
 });
 
 router.get('/settings', function (req, res, next) {
-  fs.readFile(__dirname+"/../gear-settings.json", "utf8", function (err, data) {
+  fs.readFile(__dirname+"/../settings.json", "utf8", function (err, data) {
     if(err){
       res.status(500).send(err);
     }
