@@ -163,6 +163,7 @@ router.post('/wowhead-request', function (req, res, next) {
         if(req.body.itemId){
             url += "item=" + req.body.itemId;
         }
+        console.log("Query item ID: " + req.body.itemId);
 
         request(url)
         .then(function (html) {
@@ -210,10 +211,22 @@ router.post('/wowhead-request', function (req, res, next) {
             return itemObj;
         })
         .then(function () {
-            return Item.findOneAndUpdate({itemId:req.body.itemId, override:false},itemObj,{new:true}).exec();
+            let query = {
+                $and:[
+                    {itemId:req.body.itemId},
+                    {$or:[
+                        {override:{
+                            $exists:false
+                            }},
+                        {override:false}
+                    ]}
+                ]
+            };
+
+            return Item.findOneAndUpdate(query,itemObj,{new:true}).exec();
         })
         .then(function (item) {
-            console.log("WoWHead query on item: ", item.name);
+            console.log("WoWHead query on item: ", item);
             res.status(200).send(item);
         })
         .catch(function (err) {
